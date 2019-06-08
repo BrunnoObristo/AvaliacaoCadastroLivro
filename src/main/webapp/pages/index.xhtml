@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Avaliação</title>
+</h:head>
+<h:body>
+
+	<p:growl id="msgs" showDetail="false" life="7000" sticky="false" autoUpdate="true"/>
+
+	
+	<p:dialog widgetVar="dgLoader" modal="true" resizable="false"
+		showHeader="false">
+		<p:graphicImage name="ajax-loader.gif" library="images" />
+	</p:dialog>
+
+	<p:ajaxStatus onstart="PF('dgLoader).show()"
+		onsuccess="PF('dgLoader').hide()" />
+
+	<h:form id="form">
+		<p:commandButton id="btnNovo" title="Novo" value="Novo"
+			icon="ui-icon-plus" oncomplete="PF('insertdlg').show()" />
+
+	</h:form>
+	
+	<h:form id="frmDialog">
+		<p:dialog header="Cadastrar Livro" widgetVar="insertdlg" modal="true"
+			height="100%">
+			
+			<h:panelGrid columns="2">
+			
+			<h:outputText value="Nome: " style="margin-right: 5px;"/>
+			<p:inputText id="nome" value="#{livroMB.edit.nome}"/>
+			
+			<h:outputText value="Autor:" style="margin-right: 5px;"/>
+			<p:inputText id="autor" value="#{livroMB.edit.autor}"/>
+			
+			<h:outputText value="Editora" style="margin-right: 5px;"/>
+			<p:inputText id="editora" value="#{livroMB.edit.editora}"/>
+			
+			<h:outputText value="Categoria" style="margin-right: 5px;"/>
+			<h:selectOneMenu value="#{livroMB.edit.categoria}">
+  		    <f:selectItem itemValue="terror" itemLabel="Terror" />
+ 		    <f:selectItem itemValue="ficção" itemLabel="Ficção" />
+ 		    <f:selectItem itemValue="histórico" itemLabel="Histórico" />                   
+			</h:selectOneMenu>
+			
+			
+			<h:outputText value="Quantidade" style="margin-right: 5px;"/>
+			<p:inputText id="quantidade" value="#{livroMB.edit.quantidade}"/>
+			
+			</h:panelGrid>
+			
+			<f:facet name="footer">
+					<p:outputPanel layout="block" style="text-align:center" />
+					<p:commandButton value="Confirmar" icon="ui-icon-check"
+						update=":msgs form" actionListener="#{livroMB.onSave()}" />
+					<p:commandButton value="Cancelar" icon="ui-icon-close"
+						oncomplete="PF('insertdlg').hide()" />
+				</f:facet>
+			
+			</p:dialog>
+			
+		</h:form>	
+			
+			<p:panel header="Registros" id="pnlResultado"
+			style="width:98%; border:0">
+			
+			<p:dataTable id="tblRegistros" var="etec" value="#{livroMB.registros}"
+				emptyMessage="Nenhum registro encontrado" reflow="true"
+				paginator="true" rows="10" rowsPerPageTemplate="5,10,15"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink}
+							 					{PreviousPageLink}  {PageLinks}
+						 					{NextPageLink}	{LastPageLink}
+							 					{RowsPerPageDropdown}">
+							 					
+			<p:column headerText="Nome Livro" style="white-space: pre-wrap">
+					<h:outputText value="#{livro.nome}" />
+				</p:column>
+				<p:column headerText="Autor" style="white-space: pre-wrap">
+					<h:outputText value="#{livro.autor}" />
+				</p:column>
+				<p:column headerText="Editora" style="white-space: pre-wrap">
+					<h:outputText value="#{livro.editora}" />
+				</p:column>
+				<p:column headerText="Categoria" style="white-space: pre-wrap">
+					<h:outputText value="#{livro.categoria}" />
+				</p:column>
+				<p:column headerText="Quantidade" style="white-space: pre-wrap">
+					<h:outputText value="#{livro.quantidade}" />
+				</p:column>
+
+			</p:dataTable>
+			
+		
+	</p:panel>
+
+
+
+</h:body>
+</html>
