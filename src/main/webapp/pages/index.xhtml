@@ -67,37 +67,9 @@
 			
 		</h:form>	
 			
-			<p:panel header="Registros" id="pnlResultado"
-			style="width:98%; border:0">
-			
-			<p:dataTable id="tblRegistros" var="etec" value="#{livroMB.registros}"
-				emptyMessage="Nenhum registro encontrado" reflow="true"
-				paginator="true" rows="10" rowsPerPageTemplate="5,10,15"
-				paginatorTemplate="{CurrentPageReport}  {FirstPageLink}
-							 					{PreviousPageLink}  {PageLinks}
-						 					{NextPageLink}	{LastPageLink}
-							 					{RowsPerPageDropdown}">
-							 					
-			<p:column headerText="Nome Livro" style="white-space: pre-wrap">
-					<h:outputText value="#{livro.nome}" />
-				</p:column>
-				<p:column headerText="Autor" style="white-space: pre-wrap">
-					<h:outputText value="#{livro.autor}" />
-				</p:column>
-				<p:column headerText="Editora" style="white-space: pre-wrap">
-					<h:outputText value="#{livro.editora}" />
-				</p:column>
-				<p:column headerText="Categoria" style="white-space: pre-wrap">
-					<h:outputText value="#{livro.categoria}" />
-				</p:column>
-				<p:column headerText="Quantidade" style="white-space: pre-wrap">
-					<h:outputText value="#{livro.quantidade}" />
-				</p:column>
-
-			</p:dataTable>
-			
 		
-	</p:panel>
+		
+
 
 
 
